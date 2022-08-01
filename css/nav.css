@@ -1,6 +1,6 @@
-
 * {
 	box-sizing: border-box;
+	position: relative;
 }
 body {
 	font-family: 'Montserrat', sans-serif;
@@ -8,20 +8,17 @@ body {
 	margin: 0;
 	min-height: 100vh;
 }
-ul {
+.header ul {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
 
-h2,
-h3,
-a {
-	color: #34495e;
-}
 
-a {
+.header a {
+	color: #34495e;
+	top:0px;
 	text-decoration: none;
 }
 
@@ -68,6 +65,27 @@ a {
 	border-radius: 5px;
 }
 
+.url:link{
+	color:burlywood;
+	text;text-decoration: none;
+}
+.url:hover{
+	color:white;
+	text;text-decoration: none;
+}
+.url:visited{
+	color:white:
+	text;text-decoration: none;
+}
+
+p{
+	color:"white"
+}
+
+td{
+	width:33%;
+	height:400px;
+}
 
 /* ================================= 
   Media Queries
