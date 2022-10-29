@@ -1,18 +1,13 @@
 @charset "utf-8";
 /* CSS Document */
-/*
-body {
-font-family: Helvetica, sans-serif;
-padding: 5%;
-text-align: center;
-font-size: 50;
+div tr td table{
+	min-width: 200px;
 }
-*/
-/* Styling the area of the slides */
+
 #slideshow {
 overflow: hidden;
-height: 300px;
-width: 600px;
+height: 200px;
+width: 300px;
 margin: 0 auto;
 }
 
@@ -20,8 +15,8 @@ margin: 0 auto;
 with a fixed width and height */
 .slide {
 float: left;
-height: 510px;
-width: 600px;
+height: 200px;
+width: 300px;
 }
 
 /* Add animation to the slides */
@@ -29,7 +24,7 @@ width: 600px;
 
 /* Calculate the total width on the
 basis of number of slides */
-width: calc(600px * 10);
+width: calc(300px * 10);
 
 /* Specify the animation with the
 duration and speed */
@@ -66,34 +61,34 @@ each of the slides */
 }
 
 20% {
-	margin-left: calc(-600px);
+	margin-left: calc(-300px);
 }
 
 30% {
-	margin-left: calc(-600px * 2);
+	margin-left: calc(-300px * 2);
 }
 
 40% {
-	margin-left: calc(-600px * 3);
+	margin-left: calc(-300px * 3);
 }
 	
 50% {
-	margin-left: calc(-600px * 4);
+	margin-left: calc(-300px * 4);
 }
 	
 60% {
-	margin-left: calc(-600px * 5);
+	margin-left: calc(-300px * 5);
 }
 	
 70% {
-	margin-left: calc(-600px * 6);
+	margin-left: calc(-300px * 6);
 }
 	
 80% {
-	margin-left: calc(-600px * 7);
+	margin-left: calc(-300px * 7);
 }
 	
 90% {
-	margin-left: calc(-600px * 8);
+	margin-left: calc(-300px * 8);
 }
 }
