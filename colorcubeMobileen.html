@@ -2,13 +2,15 @@
 <html>
 
 <head>
-    <meta charset="utf-8" name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta charset="utf-8" name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>ColorCube</title>
     <link rel="stylesheet" href="css/slideMobile.css">
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
 </head>
 
-<body background="img/colorcubeBackground.jpg" style="background-repeat:no-repeat;background-attachment:fixed;background-color:whitesmoke">
+<body background="img/colorcubeBackground.jpg"
+    style="background-repeat:no-repeat;background-attachment:fixed;background-color:whitesmoke">
     <table width="100%" border="0" margin="0px" cellpadding="0px">
         <tbody margin="0px">
             <tr>
@@ -220,12 +222,28 @@
                 <td>
                     <div
                         style="margin:10px auto;left: 5px;padding: 10px; color: black; background-color:#E95426; width: 90%;height:auto; border-radius:6px;text-decoration: none;line-height: 250%;color:white;text-align: center">
-                        <a href="mailto:mariocanfly@hotmail.com" style="text-decoration: none;color:white">Contact me</a>
+                        <a href="mailto:mariocanfly@hotmail.com" style="text-decoration: none;color:white">Contact
+                            me</a>
                     </div>
                 </td>
             </tr>
         </tbody>
     </table>
 </body>
+<script type="text/javascript">
+    var phoneWidth = parseInt(window.screen.width);
+    var phoneScale = phoneWidth / 640;
+    var ua = navigator.userAgent;
+    if (/Android (d+.d+)/.test(ua)) {
+        var version = parseFloat(RegExp.$1);
+        if (version > 2.3) {
+            document.write('<meta name="viewport" content="width=640, minimum-scale = ' + phoneScale + ', maximum-scale = ' + phoneScale + ', target-densitydpi=device-dpi">');
+        } else {
+            document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+        }
+    } else {
+        document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+    }
+</script>
 
 </html>
