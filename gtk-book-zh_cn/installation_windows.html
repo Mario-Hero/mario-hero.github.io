@@ -178,92 +178,86 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="windows"><a class="header" href="#windows">Windows</a></h1>
-<p>When preparing your Windows machine, you have to decide between either using the <strong>MSVC toolchain</strong> or the <strong>GNU toolchain</strong>.
-If in doubt, go for MSVC since that is the default on Windows.
-You will want to go for the GNU toolchain if you depend on libraries that can only be compiled with the GNU toolchain.</p>
-<h2 id="install-rustup"><a class="header" href="#install-rustup">Install Rustup</a></h2>
-<p>Install the Rust toolchain via <a href="https://rustup.rs/">rustup</a>.</p>
-<h2 id="install-gtk-4"><a class="header" href="#install-gtk-4">Install GTK 4</a></h2>
+<p>在 Windows 计算机上做准备时，您必须在使用 <strong>MSVC 工具链</strong>或 <strong>GNU 工具链</strong>之间做出决定。 如有疑问，请选择 MSVC，因为这是 Windows 上的默认设置。 如果您依赖只能使用 GNU 工具链编译的库，您将需要使用 GNU 工具链。</p>
+<h2 id="安装-rustup"><a class="header" href="#安装-rustup">安装 Rustup</a></h2>
+<p>通过 <a href="https://rustup.rs/">rustup</a> 安装 Rust 工具链。</p>
+<h2 id="安装-gtk-4"><a class="header" href="#安装-gtk-4">安装 GTK 4</a></h2>
 <details>
-<summary>Build GTK 4 with gvsbuild and MSVC (recommended)</summary>
-<h3 id="set-rust-toolchain-to-msvc"><a class="header" href="#set-rust-toolchain-to-msvc">Set Rust toolchain to MSVC</a></h3>
-<p>Tell Rust to use MSVC by executing:</p>
+<summary>使用gvsbuild 和 MSVC构建GTK 4 (推荐)</summary>
+<h3 id="将-rust-工具链设为-msvc"><a class="header" href="#将-rust-工具链设为-msvc">将 Rust 工具链设为 MSVC</a></h3>
+<p>通过执行以下命令告诉 Rust 使用 MSVC：</p>
 <pre><code>rustup default stable-msvc
 </code></pre>
-<p>Note that this does not install the MSVC toolchain. If you don't have it yet, you will need to <a href="https://learn.microsoft.com/en-us/windows/dev-environment/rust/setup">install it separately</a>.</p>
-<h3 id="build-gtk-4"><a class="header" href="#build-gtk-4">Build GTK 4</a></h3>
-<p>Follow the <a href="https://github.com/wingtk/gvsbuild#development-environment"><code>gvsbuild</code> docs to build GTK 4</a>. Be sure to build the right version:</p>
+<p>请注意，这不会安装 MSVC 工具链。如果您还没有，则需要<a href="https://learn.microsoft.com/zh-cn/windows/dev-environment/rust/setup">单独安装它</a>。</p>
+<h3 id="构建-gtk-4"><a class="header" href="#构建-gtk-4">构建 GTK 4</a></h3>
+<p>按照 <a href="https://github.com/wingtk/gvsbuild#development-environment"><code>gvsbuild</code> 文档构建 GTK 4</a>。请务必构建正确的版本：</p>
 <pre><code>gvsbuild build gtk4
 </code></pre>
-<h3 id="update-environment-variables"><a class="header" href="#update-environment-variables">Update environment variables</a></h3>
+<h3 id="更新环境变量"><a class="header" href="#更新环境变量">更新环境变量</a></h3>
 <ol>
-<li>Go to Start</li>
-<li>Search for 'Advanced system settings'</li>
-<li>Click 'Environment Variables...'</li>
-<li>Ensure there is a user variable named <code>PKG_CONFIG_PATH</code> with value <code>C:\gtk-build\gtk\x64\release\lib\pkgconfig</code></li>
-<li>Edit the variable named <code>Path</code> and add <code>C:\gtk-build\gtk\x64\release\bin</code> to it</li>
-<li>Ensure there is a user variable named <code>Lib</code> with value <code>C:\gtk-build\gtk\x64\release\lib</code> (or add new value to existing variable if already exists)</li>
+<li>打开开始菜单</li>
+<li>搜索“高级系统设置”</li>
+<li>单击 '环境变量...'</li>
+<li>确保存在名为<code>PKG_CONFIG_PATH``C:\gtk-build\gtk\x64\release\lib\pkgconfig</code> 的用户环境变量</li>
+<li>编辑名为<code>Path</code>的变量并添加 <code>C:\gtk-build\gtk\x64\release\bin</code> 到其中</li>
+<li>确保有一个名为 <code>Lib</code> 的用户环境变量并包含<code>C:\gtk-build\gtk\x64\release\lib</code> （如果已存在，则向现有变量添加新值）</li>
 </ol>
-<p>You can now continue with the <a href="./project_setup.html">project setup</a>.</p>
+<p>您现在可以继续进行<a href="https://mario-hero.github.io/gtk-book-zh_cn/project_setup.html">项目设置</a>。</p>
 </details>
 <details>
-<summary>Build GTK 4 manually with MSVC</summary>
-<p>If it's not possible to build with <code>gvsbuild</code> (or you want to customize your build), you
-can build GTK 4 and the minimum dependencies you need manually.</p>
-<h3 id="set-rust-toolchain-to-msvc-1"><a class="header" href="#set-rust-toolchain-to-msvc-1">Set Rust toolchain to MSVC</a></h3>
-<p>Set the Rust toolchain to MSVC by executing:</p>
+<summary>使用 MSVC 手动构建 GTK 4</summary>
+<p>如果使用 <code>gvsbuild</code> 无法正常构建 （或者您想要自定义构建），则可以手动构建 GTK 4 和您需要的最小依赖项。</p>
+<h3 id="将-rust-工具链设置为-msvc"><a class="header" href="#将-rust-工具链设置为-msvc">将 Rust 工具链设置为 MSVC</a></h3>
+<p>通过执行以下命令，将 Rust 工具链设置为 MSVC：</p>
 <pre><code>rustup default stable-msvc
 </code></pre>
 <h3 id="visual-studio"><a class="header" href="#visual-studio">Visual Studio</a></h3>
-<p>Install Visual Studio Community from <a href="https://visualstudio.microsoft.com/de/vs/community/">visualstudio.microsoft.com</a>.
-Make sure to check the box "Desktop development with C++" during the installation process.</p>
+<p>从 <a href="https://visualstudio.microsoft.com/zh-hans/vs/community/">visualstudio.microsoft.com</a> 安装 Visual Studio Community。 确保在安装过程中选中“使用 C++ 的桌面开发”选项。</p>
 <div style="text-align:center"><img src="img/vs-install.png" /></div>
 <h3 id="git"><a class="header" href="#git">Git</a></h3>
-<p>Download git from <a href="https://gitforwindows.org/">gitforwindows.org</a>.</p>
+<p>从 <a href="https://gitforwindows.org/">gitforwindows.org</a> 下载 git.</p>
 <h3 id="cmake"><a class="header" href="#cmake">CMake</a></h3>
-<p>Download CMake from <a href="https://cmake.org/download/">https://cmake.org/download/</a></p>
+<p>从 <a href="https://cmake.org/download/">https://cmake.org/download/</a> 下载 CMake.</p>
 <h3 id="python"><a class="header" href="#python">Python</a></h3>
-<p>Download python from <a href="https://www.python.org/downloads">python.org</a>.
-Make sure to opt-in to adding Python to your Path during the installation process.</p>
+<p>从 <a href="https://www.python.org/downloads">python.org</a> 下载 Python.
+确保在安装过程中选择将 Python 添加到您的 Path.</p>
 <h3 id="meson"><a class="header" href="#meson">Meson</a></h3>
-<p>Install meson by executing:</p>
+<p>通过执行以下命令安装 meson：</p>
 <pre><code class="language-powershell">pip install meson ninja
 </code></pre>
 <h3 id="gettext-021"><a class="header" href="#gettext-021">Gettext 0.21</a></h3>
-<p>Download Gettext 0.21 from <a href="https://mlocati.github.io/articles/gettext-iconv-windows.html">mlocati.github.io</a>.
-Make sure to select the static version.</p>
+<p>从 <a href="https://mlocati.github.io/articles/gettext-iconv-windows.html">mlocati.github.io</a> 下载 Gettext 0.21.
+确保选择静态链接版本。</p>
 <h3 id="pkg-config"><a class="header" href="#pkg-config">Pkg-config</a></h3>
-<p>Download pkg-config-lite from <a href="https://sourceforge.net/projects/pkgconfiglite/">sourceforge.net</a>.
-Then extract and unpack it in <code>C:/</code>, so that the executable is in <code>C:\pkg-config-lite-0.28-1\bin</code>.</p>
-<h3 id="update-environment-variables-1"><a class="header" href="#update-environment-variables-1">Update environment variables</a></h3>
+<p>从 <a href="https://sourceforge.net/projects/pkgconfiglite/">sourceforge.net</a> 下载 pkg-config-lite。
+然后解压到 <code>C:/</code>, 使可执行文件位于 <code>C:\pkg-config-lite-0.28-1\bin</code>.</p>
+<h3 id="更新环境变量-1"><a class="header" href="#更新环境变量-1">更新环境变量</a></h3>
 <ol>
-<li>Go to settings -&gt; Search and open <code>Advanced system settings</code> -&gt; Click on <code>Environment variables</code></li>
-<li>Select <code>Path</code> -&gt; Click on <code>Edit</code> -&gt; Add the following entries:</li>
+<li>转到设置 -&gt; 搜索并打开 <code>高级系统设置</code> -&gt; 点击 <code>环境变量</code> 按钮</li>
+<li>选择<code>Path</code> -&gt; 点击<code>编辑</code> -&gt; 添加以下条目：</li>
 </ol>
 <pre><code>C:\pkg-config-lite-0.28-1\bin
 C:\gnome\bin
 </code></pre>
 <ol start="3">
-<li>Go back to <code>Environment variables</code></li>
-<li>Under <code>User variables</code> click on <code>New</code> and add:</li>
+<li>返回到 <code>环境变量</code></li>
+<li>在 <code>用户变量</code>下点击<code>新建</code> 并添加:</li>
 </ol>
 <ul>
-<li>Variable name: <code>PKG_CONFIG_PATH</code></li>
-<li>Variable value: <code>C:\gnome\lib\pkgconfig</code></li>
+<li>环境变量名称: <code>PKG_CONFIG_PATH</code></li>
+<li>环境变量值: <code>C:\gnome\lib\pkgconfig</code></li>
 </ul>
-<h3 id="compile-and-install-gtk-4"><a class="header" href="#compile-and-install-gtk-4">Compile and install GTK 4</a></h3>
-<p>From the Windows start menu, search for <code>x64 Native Tools Command Prompt for VS 2019</code>.
-That will open a terminal configured to use MSVC x64 tools.
-From there, run the following commands:</p>
+<h3 id="编译安装-gtk-4"><a class="header" href="#编译安装-gtk-4">编译安装 GTK 4</a></h3>
+<p>从 Windows 开始菜单中，搜索 <code>x64 Native Tools Command Prompt for VS</code>。 这将打开一个配置为使用 MSVC x64 工具的终端。 从那里，运行以下命令：</p>
 <pre><code class="language-cmd">cd /
 git clone https://gitlab.gnome.org/GNOME/gtk.git --depth 1
 git clone https://gitlab.gnome.org/GNOME/libxml2.git --depth 1
 git clone https://gitlab.gnome.org/GNOME/librsvg.git --depth 1
 
-:: Make sure that cmd finds pkg-config-lite when searching for pkg-config
+:: 确保cmd在搜索pkg-config时能找到pkg-config-lite
 where pkg-config
 
-:: Make sure that setuptools is available.
+:: 确保setuptools可用。
 pip install setuptools
 
 cd gtk
@@ -282,41 +276,40 @@ nmake /f generate-msvc.mak generate-nmake-files
 nmake /f Makefile.vc CFG=release install PREFIX=C:\gnome
 cd /
 </code></pre>
-<p>You can now continue with the <a href="./project_setup.html">project setup</a>.</p>
+<p>您现在可以继续进行<a href="https://mario-hero.github.io/gtk-book-zh_cn/project_setup.html">项目设置</a>。</p>
 </details>
 <details>
-<summary>Install GTK 4 with MSYS2 and the GNU toolchain</summary>
-<h3 id="install-rustup-1"><a class="header" href="#install-rustup-1">Install Rustup</a></h3>
-<p>Install the rust toolchain via <a href="https://rustup.rs/">rustup</a>.</p>
-<h3 id="remove-residues-from-the-msvc-toolchain"><a class="header" href="#remove-residues-from-the-msvc-toolchain">Remove residues from the MSVC toolchain</a></h3>
-<p>If you used the MSVC toolchain before, make sure to revert all changes you made to environment variables during the installation process.</p>
+<summary>使用 MSYS2 和 GNU 工具链安装 GTK 4</summary>
+<h3 id="安装-rustup-1"><a class="header" href="#安装-rustup-1">安装 Rustup</a></h3>
+<p>通过 <a href="https://rustup.rs/">rustup</a> 安装 rust 工具链。</p>
+<h3 id="从-msvc-工具链中去除残留物"><a class="header" href="#从-msvc-工具链中去除残留物">从 MSVC 工具链中去除残留物</a></h3>
+<p>如果您以前使用过 MSVC 工具链，请确保在安装过程中还原您对环境变量所做的所有更改。</p>
 <h3 id="msys2"><a class="header" href="#msys2">MSYS2</a></h3>
-<p>Install MSYS2 from <a href="https://www.msys2.org/">www.msys2.org</a></p>
-<h3 id="install-gtk-4-1"><a class="header" href="#install-gtk-4-1">Install GTK 4</a></h3>
-<p>From the Windows start menu, search for <code>MSYS2 MinGW 64-bit</code>.
-That will open a terminal configured to use MinGW x64 tools.</p>
-<p>There, execute the following commands to install <code>GTK 4</code>, <code>pkgconf</code> and <code>gcc</code>.</p>
+<p>从 <a href="https://www.msys2.org/">www.msys2.org</a> 安装 MSYS2</p>
+<h3 id="安装-gtk-4-1"><a class="header" href="#安装-gtk-4-1">安装 GTK 4</a></h3>
+<p>从 Windows 开始菜单，搜索 <code>MSYS2 MinGW 64-bit</code>.
+这将打开一个配置为使用 MinGW x64 工具的终端。</p>
+<p>在终端中，执行以下命令以安装<code>GTK 4</code>、<code>pkgconf</code> 和 <code>gcc</code>：</p>
 <pre><code class="language-sh">pacman -S mingw-w64-x86_64-gtk4 mingw-w64-x86_64-gettext mingw-w64-x86_64-libxml2 mingw-w64-x86_64-librsvg mingw-w64-x86_64-pkgconf mingw-w64-x86_64-gcc
 </code></pre>
-<h3 id="update-path-environment-variable"><a class="header" href="#update-path-environment-variable">Update <code>Path</code> environment variable</a></h3>
+<h3 id="更新-path-环境变量"><a class="header" href="#更新-path-环境变量">更新 <code>Path</code> 环境变量</a></h3>
 <ol>
-<li>Go to settings -&gt; Search and open <code>Advanced system settings</code> -&gt; Click on <code>Environment variables</code></li>
-<li>Select <code>Path</code> -&gt; Click on <code>Edit</code> -&gt; Add the following three entries:</li>
+<li>转到设置 -&gt; 搜索并打开 <code>高级系统设置</code> -&gt; 点击 <code>环境变量</code> 按钮</li>
+<li>选择 <code>Path</code> -&gt; 点击 <code>编辑</code> -&gt; 添加以下三个条目：</li>
 </ol>
 <pre><code>C:\msys64\mingw64\include
 C:\msys64\mingw64\bin
 C:\msys64\mingw64\lib
 </code></pre>
-<h3 id="setup-the-gnu-toolchain-for-rust"><a class="header" href="#setup-the-gnu-toolchain-for-rust">Setup the GNU toolchain for Rust</a></h3>
-<p>The default toolchain on windows is <code>stable-msvc</code>.
-To switch to <code>stable-gnu</code>, run the following commands from your terminal:</p>
+<h3 id="为-rust-设置-gnu-工具链"><a class="header" href="#为-rust-设置-gnu-工具链">为 Rust 设置 GNU 工具链</a></h3>
+<p>Windows 上的默认工具链是 <code>stable-msvc</code>.
+要切换到 <code>stable-gnu</code>，请从终端运行以下命令：</p>
 <ol>
 <li><code>rustup toolchain install stable-gnu</code></li>
 <li><code>rustup default stable-gnu</code></li>
 </ol>
-<p>Please note that this command might change in the future.
-If it does not work anymore, please open an <a href="https://github.com/gtk-rs/gtk4-rs/issues/new/choose">issue</a> on our repo.</p>
-<p>You can now continue with the <a href="./project_setup.html">project setup</a>.</p>
+<p>请注意，此命令将来可能会更改。 如果它失效了，请在我们的 repo 上打开一个 <a href="https://github.com/gtk-rs/gtk4-rs/issues/new/choose">issue</a>。</p>
+<p>您现在可以继续进行<a href="https://mario-hero.github.io/gtk-book-zh_cn/project_setup.html">项目设置</a>。</p>
 </details>
 
                     </main>
