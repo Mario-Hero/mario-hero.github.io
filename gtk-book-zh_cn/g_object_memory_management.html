@@ -242,7 +242,7 @@ help: to force the closure to take ownership of `number` (and any other referenc
 32 |     button_increase.connect_clicked(move |_| number += 1);
    |  
 </code></pre>
-<p>我们的闭包只借用了 <code>number</code>. GTK 中的信号处理器要求其引用具有 "静态(``static<code>)生命周期"，因此我们不能借用一个只在 </code>build_ui<code>函数作用域中存在的变量。 编译器也给出了解决方法。 在闭包前面添加</code>move<code> 关键字，</code>number `就会被移入闭包。</p>
+<p>我们的闭包只借用了 <code>number</code>. GTK 中的信号处理器要求其引用具有静态( <code>`static</code>)生命周期，因此我们不能借用一个只在 <code>build_ui</code> 函数作用域中存在的变量。 编译器也给出了解决方法。 在闭包前面添加 <code>move</code> 关键字，<code>number </code>就会被移入闭包。</p>
 <pre><code class="language-rust  no_run compile_fail"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{self, glib, Application, ApplicationWindow, Button};
 </span><span class="boring">
