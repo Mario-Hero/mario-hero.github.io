@@ -186,7 +186,7 @@
 ╰── Widget
     ╰── Button
 </code></pre>
-<p><a href="https://docs.gtk.org/gtk4/class.Button.html#implements">GTK 文档</a>还告诉我们，<code>Button</code>实现了 <code>GtkAccessible``GtkActionable``GtkBuildable``GtkConstraintTarget</code> 接口。</p>
+<p><a href="https://docs.gtk.org/gtk4/class.Button.html#implements">GTK 文档</a>还告诉我们，<code>Button</code>实现了 <code>GtkAccessible</code>, <code>GtkActionable</code>, <code>GtkBuildable</code>, <code>GtkConstraintTarget</code> 接口。</p>
 <p>现在让我们将其与 <code>gtk-rs</code> 中的 <code>Button</code> 结构进行比较。 <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Button.html#implements">gtk-rs 文档</a>告诉我们它实现了哪些 trait。 我们发现这些 trait 在 GTK 文档中要么有相应的基类，要么有接口。 在 “Hello World” 程序中，我们希望对按钮单击做出反应。 这种行为是按钮特有的，因此我们希望在 <code>ButtonExt</code> trait 中找到合适的方法。 而事实上，<code>ButtonExt</code> 包含了 <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/prelude/trait.ButtonExt.html#tymethod.connect_clicked"><code>connect_clicked</code></a> 方法。</p>
 <p>文件名：<a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/hello_world/3/main.rs">listings/hello_world/3/main.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use gtk::prelude::*;
