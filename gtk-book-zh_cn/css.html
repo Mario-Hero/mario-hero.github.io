@@ -178,24 +178,18 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="css"><a class="header" href="#css">CSS</a></h1>
-<p>When you want to modify the style of your website, you use <a href="https://de.wikipedia.org/wiki/Cascading_Style_Sheets">CSS</a>.
-Similarly, GTK supports its own variant of CSS in order to style your app.</p>
+<p>当您想改变网站风格时，需要使用 <a href="https://de.wikipedia.org/wiki/Cascading_Style_Sheets">CSS</a>. 同样，GTK 也支持自己的 CSS 变体，以便为应用程序设计样式。</p>
 <blockquote>
-<p>We will not explain every piece of syntax used in this chapter.
-If you are new to CSS or just need a refresher, have a look at the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Syntax">MDN Web Docs</a>.</p>
+<p>在本章中，我们不会对所用的每一种语法进行解释。 如果你是 CSS 的新手，或者需要复习一下，请查看 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Syntax">MDN Web 文档</a>。</p>
 </blockquote>
-<p>Let's say we have a button and we want to set its font color to magenta.
-Every type of widget has a corresponding CSS node.
-In the case of <code>gtk::Button</code>, this node is called <code>button</code>.
-Therefore, we create a <code>style.css</code> file with the following content:</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/css/1/style.css">listings/css/1/style.css</a></p>
+<p>比方说，我们有一个按钮，希望将其字体颜色设置为品红色。 每种类型的控件都有一个对应的 CSS 节点。 对于 <code>gtk::Button</code>，这个节点被称为 <code>button</code>. 因此，我们创建了一个内容如下的 <code>style.css</code> 文件：</p>
+<p>文件名：<a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/css/1/style.css">listings/css/1/style.css</a></p>
 <pre><code class="language-css">button {
   color: magenta;
 }
 </code></pre>
-<p>Next, we need to load the CSS file in the startup step of the application.
-As usual, the widgets are created during the "activate" step.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/css/1/main.rs">listings/css/1/main.rs</a></p>
+<p>接下来，我们需要在应用程序的启动步骤中加载 CSS 文件。 像往常一样，控件是在"激活"步骤中创建的。</p>
+<p>文件名：<a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/css/1/main.rs">listings/css/1/main.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use gdk::Display;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{gdk, glib, Application, ApplicationWindow, Button, CssProvider};
@@ -245,40 +239,28 @@ fn build_ui(app: &amp;Application) {
         .build();
     window.present();
 }</code></pre>
-<p>When we now run the app, we notice that our button <em>and</em> the "close" button are magenta.
-Probably not what we wanted, but that is what our CSS snippet does.
-We did not specify for which button the rule should apply, so it was applied to both of them.</p>
+<p>现在运行应用程序时，我们会发现按钮和窗口上的"关闭"按钮都变成了品红色。 这可能不是我们想要的结果，但我们的 CSS 代码段就是这么做的。 我们没有指定该规则应适用于哪个按钮，因此它同时适用于全部两个按钮。</p>
 <div style="text-align:center"><img src="img/css_1.png" alt="Window with magenta text"/></div>
 <blockquote>
-<p>The <code>GtkInspector</code> comes in quite handy (not only) when playing with CSS.
-Make sure that the window of your app is focused and press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>D</kbd>.
-A window will pop up which lets you browse and even manipulate the state of your app.
-Open the CSS view and override the button color with the following snippet.</p>
+<p>在使用 CSS 时，<code>GtkInspector</code> 可谓得心应手（不仅如此）。 确保您的应用程序窗口处于焦点状态，然后按下  <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>D</kbd>. 这时会弹出一个窗口，您可以浏览甚至操作应用程序的状态。 打开 CSS 视图，用以下代码段覆盖按钮颜色。</p>
 <pre><code class="language-css">button {
- color: blue;
+color: blue;
 }
 </code></pre>
-<p>With the pause button you can toggle whether your CSS code is active or not.</p>
+<p>使用暂停按钮可以切换 CSS 代码的活动状态。</p>
 </blockquote>
-<h2 id="style-classes-applied-by-gtk"><a class="header" href="#style-classes-applied-by-gtk">Style Classes Applied by GTK</a></h2>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Class_selectors">Class selectors</a> are one way to choose which specific elements a CSS rule applies to.
-GTK adds style classes to many of its widgets, often depending on their content.
-A <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Button.html#css-nodes"><code>gtk::Button</code></a>, for example, will get the <code>text-button</code> style class when its content is a label.
-That is why we create a new CSS rule which only applies to <code>button</code> nodes with the style class <code>text_button</code>.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/css/2/style.css">listings/css/2/style.css</a></p>
+<h2 id="gtk-实现的样式类"><a class="header" href="#gtk-实现的样式类">GTK 实现的样式类</a></h2>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Class_selectors">类选择器</a>是选择 CSS 规则适用于哪些特定元素的一种方法。 GTK 为许多控件添加了样式类，通常取决于它们的内容。 例如，当 <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Button.html#css-nodes"><code>gtk::Button</code></a> 的内容是一个标签时，它就会获得 <code>text-button</code> 样式类。 因此，我们创建了一条新的 CSS 规则，它只适用于样式类为 <code>text_button</code> 的按钮节点。</p>
+<p>文件名：<a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/css/2/style.css">listings/css/2/style.css</a></p>
 <pre><code class="language-css">button.text-button {
   color: magenta;
 }
 </code></pre>
 <p>Now only the font of our button becomes magenta.</p>
 <div style="text-align:center"><img src="img/css_2.png" alt="Now only the text of the button is magenta"/></div>
-<h2 id="adding-your-own-style-class"><a class="header" href="#adding-your-own-style-class">Adding Your Own Style Class</a></h2>
-<p>With <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/prelude/trait.WidgetExt.html#tymethod.add_css_class"><code>add_css_class</code></a> we can also add our own style classes to widgets.
-One use-case for this is when you want a rule to apply to a hand-picked set of widgets.
-For example if we have two buttons, but want only one of them to have magenta font.
-Relying on one of the style classes which GTK adds will not help since both will get the same ones.
-Which is why we add the style class <code>button-1</code> to the first one.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/css/3/main.rs">listings/css/3/main.rs</a></p>
+<h2 id="添加你自己的样式类"><a class="header" href="#添加你自己的样式类">添加你自己的样式类</a></h2>
+<p>通过 <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/prelude/trait.WidgetExt.html#tymethod.add_css_class"><code>add_css_class</code></a>，我们还可以为控件添加自己的样式类。 这种方法的一种使用情况是，当你希望一条规则适用于一组精心挑选的部件时。 例如，我们有两个按钮，但只想让其中一个使用品红色字体。 依靠 GTK 添加的某个样式类是没有用的，因为两个按钮的样式是一样的。 这就是为什么我们要为第一个按钮添加 <code>button-1</code> 样式类。</p>
+<p>文件名：<a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/css/3/main.rs">listings/css/3/main.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use gdk::Display;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{gdk, glib, Application, ApplicationWindow, Button, CssProvider};
@@ -336,21 +318,18 @@ Which is why we add the style class <code>button-1</code> to the first one.</p>
 </span><span class="boring">        .build();
 </span><span class="boring">    window.present();
 </span><span class="boring">}</span></code></pre>
-<p>Then, we create a CSS rule that applies to <code>button</code> nodes with the style class <code>button-1</code>.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/css/3/style.css">listings/css/3/style.css</a></p>
+<p>然后，我们创建一条 CSS 规则，该规则适用于样式类为 <code>button-1</code> 的按钮节点。</p>
+<p>文件名：<a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/css/3/style.css">listings/css/3/style.css</a></p>
 <pre><code class="language-css">button.button-1 {
   color: magenta;
 }
 </code></pre>
-<p>We can see that this way only the first button gets colored magenta.</p>
+<p>我们可以看到，这样只有第一个按钮被染成了品红色。</p>
 <div style="text-align:center"><img src="img/css_3.png" alt="Two buttons and only the left one has magenta font"/></div>
-<h2 id="specifying-name-of-a-widget"><a class="header" href="#specifying-name-of-a-widget">Specifying Name of a Widget</a></h2>
-<p>If you want that your rule only applies to a single widget, matching with style classes can be fine.
-Ideally however, you would give the widget a name and match with that name instead.
-This way your intentions are more clear, compared to matching with style classes that can apply to multiple widgets.</p>
-<p>Again, we have two buttons but want to color only one of them magenta.
-We set the name of the first one with <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/prelude/trait.WidgetExt.html#tymethod.set_widget_name"><code>set_widget_name</code></a>.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/css/4/main.rs">listings/css/4/main.rs</a></p>
+<h2 id="指定控件名称"><a class="header" href="#指定控件名称">指定控件名称</a></h2>
+<p>如果您希望您的规则只适用于一个部件，那么使用样式类进行匹配也是可以的。 不过，理想情况下，您应该给控件取一个名字，然后用这个名字进行匹配。 这样，你的意图就会更明确，而不是匹配可适用于多个控件的样式类。</p>
+<p>同样，我们有两个按钮，但只想将其中一个按钮染成洋红色。 我们使用 <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/prelude/trait.WidgetExt.html#tymethod.set_widget_name"><code>set_widget_name</code></a> 设置第一个按钮的名称。</p>
+<p>文件名：<a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/css/4/main.rs">listings/css/4/main.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use gdk::Display;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{gdk, glib, Application, ApplicationWindow, Button, CssProvider};
@@ -408,21 +387,17 @@ We set the name of the first one with <a href="https://gtk-rs.org/gtk4-rs/stable
 </span><span class="boring">        .build();
 </span><span class="boring">    window.present();
 </span><span class="boring">}</span></code></pre>
-<p>Then, create a CSS rule that applies to <code>button</code> nodes with the name <code>button-1</code>.
-The name is specified after the <code>#</code> symbol.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/css/4/style.css">listings/css/4/style.css</a></p>
+<p>然后，创建一条适用于名称为 <code>button-1</code> 的按钮节点的 CSS 规则。 名称在 <code>#</code> 符号后指定。</p>
+<p>文件名：<a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/css/4/style.css">listings/css/4/style.css</a></p>
 <pre><code class="language-css">button#button-1 {
   color: magenta;
 }
 </code></pre>
-<p>Again, the style rule only applies to the first button.</p>
+<p>同样，样式规则只适用于第一个按钮。</p>
 <div style="text-align:center"><img src="img/css_4.png" alt="Two buttons and only the left one has magenta font"/></div>
-<h2 id="css-rules-provided-by-gtk"><a class="header" href="#css-rules-provided-by-gtk">CSS Rules Provided by GTK</a></h2>
-<p>Certain styles are common enough that GTK provides CSS rules for them.
-For example, if you want to indicate that your button leads to a destructive or suggested action you don't have to provide your own CSS rules.
-All you have to do is to add "destructive-action" or "suggested-action" style class to your button.
-Most widgets will document these rules in their documentation under <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Button.html#css-nodes">CSS nodes</a>.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/css/5/main.rs">listings/css/5/main.rs</a></p>
+<h2 id="gtk-提供的-css-规则"><a class="header" href="#gtk-提供的-css-规则">GTK 提供的 CSS 规则</a></h2>
+<p>某些样式非常常见，GTK 为其提供了 CSS 规则。 例如，如果您想在按钮上标明 "破坏性动作"或"建议的动作"，您就不必提供自己的 CSS 规则。 您只需在按钮上添加 "破坏性动作(destructive-action)"或 "建议的动作(suggested-action)"样式类即可。 大多数控件都会在 <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Button.html#css-nodes">CSS 节点</a>下的文档中记录这些规则。</p>
+<p>文件名：<a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/css/5/main.rs">listings/css/5/main.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Application, ApplicationWindow, Button};
@@ -468,12 +443,9 @@ Most widgets will document these rules in their documentation under <a href="htt
 </span><span class="boring">    window.present();
 </span><span class="boring">}</span></code></pre>
 <div style="text-align:center"><img src="img/css_5.png" alt="The left button is red, the right one is blue"/></div>
-<h2 id="interface-builder"><a class="header" href="#interface-builder">Interface Builder</a></h2>
-<p>We can also add style classes with the interface builder.
-Just add the <code>&lt;style&gt;</code> element to your widget.
-The <code>&lt;style&gt;</code> element is documented together with <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Widget.html#gtkwidget-as-gtkbuildable"><code>gtk::Widget</code></a>.
-Adding again destructive and suggested buttons, would then look like this:</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/css/6/window/window.ui">listings/css/6/window/window.ui</a></p>
+<h2 id="界面生成器"><a class="header" href="#界面生成器">界面生成器</a></h2>
+<p>我们还可以使用界面生成器添加样式类。 只需在 widget 中添加 <code>&lt;style&gt;</code> 元素即可。 <code>&lt;style&gt;</code> 元素与 <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Widget.html#gtkwidget-as-gtkbuildable"><code>gtk::Widget</code></a> 一起记录。 再次添加破坏性和建议的按钮，看起来就像这样：</p>
+<p>文件名：<a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/css/6/window/window.ui">listings/css/6/window/window.ui</a></p>
 <pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;interface&gt;
   &lt;template class="MyGtkAppWindow" parent="GtkApplicationWindow"&gt;
@@ -506,11 +478,9 @@ Adding again destructive and suggested buttons, would then look like this:</p>
   &lt;/template&gt;
 &lt;/interface&gt;
 </code></pre>
-<h2 id="pseudo-classes"><a class="header" href="#pseudo-classes">Pseudo-classes</a></h2>
-<p>Sometimes you want your CSS rules to apply under even more precise conditions than style classes allow.
-That is where <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes">pseudo-classes</a> come in.
-Let's use a single button with name <code>button-1</code> to demonstrate this concept.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/css/7/window/window.ui">listings/css/7/window/window.ui</a></p>
+<h2 id="伪类"><a class="header" href="#伪类">伪类</a></h2>
+<p>有时，你希望 CSS 规则在比样式类更精确的条件下应用。 这就是<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes">伪类</a>的用武之地。 让我们使用名称为 <code>button-1</code> 的按钮来演示这一概念。</p>
+<p>文件名：<a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/css/7/window/window.ui">listings/css/7/window/window.ui</a></p>
 <pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;interface&gt;
   &lt;template class="MyGtkAppWindow" parent="GtkApplicationWindow"&gt;
@@ -528,28 +498,24 @@ Let's use a single button with name <code>button-1</code> to demonstrate this co
   &lt;/template&gt;
 &lt;/interface&gt;
 </code></pre>
-<p>By adding the pseudo-class <code>hover</code>, we say that we want this rule to only apply to a <code>button</code> node with name <code>button-1</code> when hovering over it with the mouse pointer.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/css/7/style.css">listings/css/7/style.css</a></p>
+<p>通过添加伪类 <code>hover</code>，我们表示希望这条规则只适用于当鼠标指针悬停在名称为 <code>button-1</code> 的按钮节点。</p>
+<p>文件名：<a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/css/7/style.css">listings/css/7/style.css</a></p>
 <pre><code class="language-css">button#button-1:hover {
   color: magenta;
   background: yellow;
 }
 </code></pre>
-<p>If we now hover over the button, we see that over the span of one second its background turns yellow and its font turns magenta.
-After we removed the cursor, the button returns to its original state.</p>
+<p>现在，如果我们将鼠标悬停在按钮上，就会发现在一瞬间按钮的背景变成了黄色，文字变成了品红色。 当我们移除光标后，按钮又恢复到原来的状态。</p>
 <div style="text-align:center">
  <video autoplay muted loop>
   <source src="vid/css_6.webm" type="video/webm">
   <p>A video which shows that hovering over one button makes its background yellow and text red</p>
  </video>
 </div>
-<h2 id="nodes"><a class="header" href="#nodes">Nodes</a></h2>
-<p>In the previous examples, a widget always corresponded to a single CSS node.
-This is not always the case.
-For example, <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.MenuButton.html"><code>gtk::MenuButton</code></a> has multiple CSS nodes.
-Let's see how that works.</p>
-<p>First, we create a single <code>MenuButton</code>.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/css/8/window/window.ui">listings/css/8/window/window.ui</a></p>
+<h2 id="节点"><a class="header" href="#节点">节点</a></h2>
+<p>在前面的示例中，一个部件总是对应一个 CSS 节点。 但情况并非总是如此。 例如，<a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.MenuButton.html"><code>gtk::MenuButton</code></a>  就有多个 CSS 节点。</p>
+<p>首先，我们创建一个 <code>MenuButton</code>.</p>
+<p>文件名：<a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/css/8/window/window.ui">listings/css/8/window/window.ui</a></p>
 <pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;interface&gt;
   &lt;template class="MyGtkAppWindow" parent="GtkApplicationWindow"&gt;
@@ -565,33 +531,25 @@ Let's see how that works.</p>
   &lt;/template&gt;
 &lt;/interface&gt;
 </code></pre>
-<p>You can make a <code>MenuButton</code> show an icon or a label.
-If you choose to do neither of those, as we currently do, it shows an image displaying an arrow.</p>
-<p>An inheritance tree of <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.MenuButton.html#css-nodes">CSS nodes</a> displays this situation:</p>
+<p>您可以让菜单按钮( <code>MenuButton</code> )显示图标或标签。 如果您选择两者都不显示，就像我们目前所做的那样，它将显示一个箭头图像。</p>
+<p><a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.MenuButton.html#css-nodes">CSS 节点</a>的继承树就显示了这种情况：</p>
 <pre><code>menubutton
 ╰── button.toggle
     ╰── &lt;content&gt;
          ╰── [arrow]
 </code></pre>
-<p>We see that the <code>menubutton</code> node has children, which themselves have children and attached style classes.
-Now we know that we have to add a CSS rule that applies to the <code>arrow</code> node, which is a descendant of <code>menubutton</code>.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/css/8/style.css">listings/css/8/style.css</a></p>
+<p>我们看到，<code>menubutton</code> 节点有子节点，而子节点本身也有子节点和附加样式类。 现在我们知道，必须添加一条适用于箭头(<code>arrow</code>)节点的 CSS 规则，它是 <code>menubutton</code> 的子节点。</p>
+<p>文件名：<a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/css/8/style.css">listings/css/8/style.css</a></p>
 <pre><code class="language-css">menubutton arrow {
   color: magenta;
 }
 </code></pre>
-<p>Indeed, we get a <code>MenuButton</code> with a magenta arrow.</p>
+<p>的确，我们得到了一个带有品红色箭头的 <code>MenuButton</code>。</p>
 <div style="text-align:center"><img src="img/css_8.png" alt="Button with a magenta symbol in it"/></div>
-<h2 id="set-css-name-and-use-exported-colors"><a class="header" href="#set-css-name-and-use-exported-colors">Set CSS Name and Use Exported Colors</a></h2>
-<p>We already learned how to give an instance of a widget a name with pseudo-classes.
-But what if we have a custom widget and we want to reference all instances of it?
-Let's see how to deal with this situation by messing with our To-Do app once more.</p>
-<p>The class <code>TaskRow</code> inherits from <code>gtk::Box</code>, so we could just match for the node <code>box</code>.
-However, in that case we would also match with other instance of <code>gtk::Box</code>.
-What we will want to do instead is to give <code>TaskRow</code> its own CSS name.
-When calling <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/subclass/widget/trait.WidgetClassExt.html#method.set_css_name"><code>set_css_name</code> </a>, we change the name of the CSS node of the widget class.
-In our case, the widget <code>TaskRow</code> then corresponds to the node <code>task-row</code>.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/3/task_row/imp.rs">listings/todo/3/task_row/imp.rs</a></p>
+<h2 id="设置-css-名称并使用导出颜色"><a class="header" href="#设置-css-名称并使用导出颜色">设置 CSS 名称并使用导出颜色</a></h2>
+<p>我们已经学习了如何使用伪类为部件实例命名。 但如果我们有一个自定义控件，并想引用它的所有实例，该怎么办呢？ 让我们通过再次用待办事项应用来看看如何处理这种情况。</p>
+<p><code>TaskRow</code> 类继承于 <code>gtk::Box</code>，因此我们可以只匹配节点 <code>box</code>. 但是，在这种情况下，我们也会匹配其他 <code>gtk::Box</code> 的实例。 我们要做的是为 <code>TaskRow</code> 赋予自己的 CSS 名称。 调用 <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/subclass/widget/trait.WidgetClassExt.html#method.set_css_name"><code>set_css_name</code> </a> 时，我们会更改控件类的 CSS 节点名称。 在我们的例子中，<code>TaskRow</code> 就对应于节点 <code>task-row</code>.</p>
+<p>文件名：<a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/3/task_row/imp.rs">listings/todo/3/task_row/imp.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use std::cell::RefCell;
 </span><span class="boring">
 </span><span class="boring">use glib::Binding;
@@ -636,20 +594,15 @@ impl ObjectSubclass for TaskRow {
 </span><span class="boring">
 </span><span class="boring">// Trait shared by all boxes
 </span><span class="boring">impl BoxImpl for TaskRow {}</span></code></pre>
-<p>What to do with the new node name now?
-Let's change the background color once more but this time with a twist.
-We are going to use the named color <code>success_color</code>.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/3/resources/style.css">listings/todo/3/resources/style.css</a></p>
+<p>现在该如何处理新的节点名称呢？ 让我们再次更改背景颜色，但这次有点不一样，我们将使用名为 <code>success_color</code> 的颜色。</p>
+<p>文件名：<a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/3/resources/style.css">listings/todo/3/resources/style.css</a></p>
 <pre><code class="language-css">task-row {
   background-color: @success_color;
 }
 </code></pre>
-<p>The <code>Default</code> stylesheet of GTK provides pre-defined colors for various use-cases.
-As of this writing, these exported colors can only be found in its <a href="https://gitlab.gnome.org/GNOME/gtk/-/blob/b2c227e9c57839a2a4e24462a71ae0bad9a95264/gtk/theme/Default/_colors-public.scss">source code</a>.</p>
-<p>There we find the color <code>success_color</code>, which in real scenarios should be used to indicate success.
-We can then access the pre-defined color by adding an <code>@</code> in front of its name.</p>
-<p>We also have to add <code>style.css</code> to <code>resources.gresource.xml</code>.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/3/resources/resources.gresource.xml">listings/todo/3/resources/resources.gresource.xml</a></p>
+<p>GTK 的默认(<code>Default</code>)样式表为各种用途提供了预定义的颜色。 在<a href="https://gitlab.gnome.org/GNOME/gtk/-/blob/b2c227e9c57839a2a4e24462a71ae0bad9a95264/gtk/theme/Default/_colors-public.scss">源代码</a>中，我们可以找到 <code>success_color</code> 颜色，在实际场景中，它用来表示成功。 然后，我们可以通过在名称前添加 @ 来访问预定义的颜色。</p>
+<p>我们还必须在 <code>resources.gresource.xml</code> 中添加 <code>style.css</code>.</p>
+<p>文件名：<a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/3/resources/resources.gresource.xml">listings/todo/3/resources/resources.gresource.xml</a></p>
 <pre><code class="language-diff"> &lt;?xml version="1.0" encoding="UTF-8"?&gt;
  &lt;gresources&gt;
    &lt;gresource prefix="/org/gtk_rs/Todo3/"&gt;
@@ -660,8 +613,8 @@ We can then access the pre-defined color by adding an <code>@</code> in front of
    &lt;/gresource&gt;
  &lt;/gresources&gt;
 </code></pre>
-<p>Additionally, we call <code>load_css()</code> in <code>connect_startup</code>.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/3/main.rs">listings/todo/3/main.rs</a></p>
+<p>此外，我们还在 <code>connect_startup</code> 中调用了 <code>load_css()</code>.</p>
+<p>文件名：<a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/3/main.rs">listings/todo/3/main.rs</a></p>
 <pre><code class="language-rust"><span class="boring">mod task_object;
 </span><span class="boring">mod task_row;
 </span><span class="boring">mod utils;
@@ -716,8 +669,7 @@ We can then access the pre-defined color by adding an <code>@</code> in front of
 </span><span class="boring">    let window = Window::new(app);
 </span><span class="boring">    window.present();
 </span><span class="boring">}</span></code></pre>
-<p><code>load_css()</code> is very similar to the one shown at the beginning of the chapter.
-However, this time we load styles using <code>load_from_resource()</code>.</p>
+<p><code>load_css()</code> 与本章开头显示的非常相似。 不过，这次我们使用 <code>load_from_resource()</code> 来加载样式。</p>
 <pre><code class="language-rust"><span class="boring">mod task_object;
 </span><span class="boring">mod task_row;
 </span><span class="boring">mod utils;
@@ -772,14 +724,11 @@ However, this time we load styles using <code>load_from_resource()</code>.</p>
 </span><span class="boring">    let window = Window::new(app);
 </span><span class="boring">    window.present();
 </span><span class="boring">}</span></code></pre>
-<p>And that is how the task rows look like after the change.
-Probably better to revert this immediately again.</p>
+<p>这就是更改后的任务行的样子。 也许最好立即还原……</p>
 <div style="text-align:center"><img src="img/todo_3.png" alt="To-Do app with green background for its task widget"/></div>
-<h2 id="adapt-todo-app"><a class="header" href="#adapt-todo-app">Adapt Todo App</a></h2>
-<p>Luckily, finding an actual use for CSS in our To-Do app isn't too hard.
-Until now the different tasks weren't nicely separated.
-We can change that by adding the <code>frame</code> and the <code>separators</code> style class to our <code>tasks_list</code>.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/4/resources/task_row.ui">listings/todo/4/resources/window.ui</a></p>
+<h2 id="改造待办事项应用"><a class="header" href="#改造待办事项应用">改造待办事项应用</a></h2>
+<p>幸运的是，在我们的待办事项应用程序中找到 CSS 的实际用途并不难。 到目前为止，不同的任务还没有很好地分隔开来。 我们可以通过在 <code>tasks_list</code> 中添加 <code>frame</code> 和分隔符(<code>separators</code>)样式类来改变这种状况。</p>
+<p>文件名：<a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/4/resources/task_row.ui">listings/todo/4/resources/window.ui</a></p>
 <pre><code class="language-diff"> &lt;object class="GtkListView" id="tasks_list"&gt;
    &lt;property name="valign"&gt;start&lt;/property&gt;
 +  &lt;style&gt;
@@ -789,17 +738,13 @@ We can change that by adding the <code>frame</code> and the <code>separators</co
  &lt;/object&gt;
 </code></pre>
 <div style="text-align:center"><img src="img/todo_4.png" alt="To-Do app with borders for its task widget"/></div>
-<h2 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h2>
-<p>There are surely enough ways to define CSS rules.
-Let's briefly recap the syntax we learned.
-The following rule matches the node <code>arrow</code>, which is a descendant of the node <code>button</code> with the name <code>button-1</code> and the style classes <code>toggle</code> and <code>text-button</code>.
-The rule then actually applies, when we also hover over <code>arrow</code>.</p>
+<h2 id="结论"><a class="header" href="#结论">结论</a></h2>
+<p>定义 CSS 规则的方法有很多。 让我们简要回顾一下所学的语法。 下面的规则匹配节点 <code>arrow</code>，它是名称为 <code>button-1</code>、样式类为 <code>toggle</code> 和 <code>text-button</code> 的按钮节点的子对象。 当我们将鼠标悬停在箭头上时，该规则就会实际应用。</p>
 <pre><code class="language-css">button#button-1.toggle.text-button arrow:hover {
   color: magenta;
 }
 </code></pre>
-<p>When the rule applies, the <code>color</code> parameter will be set to magenta.
-You can find the full list of supported parameters in GTK's <a href="https://docs.gtk.org/gtk4/css-properties.html#gtk-css-properties">documentation</a>.</p>
+<p>当规则应用时，颜色参数将被设置为品红色。 您可以在 GTK <a href="https://docs.gtk.org/gtk4/css-properties.html#gtk-css-properties">文档</a>中找到支持参数的完整列表。</p>
 
                     </main>
 
