@@ -1388,7 +1388,7 @@ impl ButtonImpl for CustomButton {
 <li>我们想向对象添加属性或信号。</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="泛型值"><a class="header" href="#泛型值">泛型值</a></h1>
-<p>一些与 GObject 相关的函数依赖于其参数或返回参数的泛型。 由于 GObject 的内省是通过 C 语言接口工作的，因此这些函数不能依赖于任何强大的 Rust 概念。 在这种情况下，需要使用<a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/value/struct.Value.html"><code>glib::Value</code></a> 或 <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/variant/struct.Variant.html"><code>glib::Variant</code></a>.</p>
+<p>一些与 GObject 相关的函数依赖于其参数或返回参数的泛型。 由于 GObject 的内省（introspection）是通过 C 语言接口工作的，因此这些函数不能依赖于任何强大的 Rust 概念。 在这种情况下，需要使用<a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/value/struct.Value.html"><code>glib::Value</code></a> 或 <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/variant/struct.Variant.html"><code>glib::Variant</code></a>.</p>
 <h2 id="value"><a class="header" href="#value">Value</a></h2>
 <p>我们先从 <code>Value</code> 开始。从概念上讲，<code>Value</code> 类似 Rust 的 <code>enum</code> ，定义如下：</p>
 <pre><code class="language-rust  no_run noplayground">enum Value &lt;T&gt; {
@@ -1404,7 +1404,7 @@ impl ButtonImpl for CustomButton {
     String(Option&lt;String&gt;),
     Object(Option&lt;dyn IsA&lt;glib::Object&gt;&gt;),
 }</code></pre>
-<p>例如，您可以这样使用<code>Value</code> 代表  <code>i32</code> 的值。</p>
+<p>例如，您可以这样使用 <code>Value</code> 代表  <code>i32</code> 的值。</p>
 <p>文件名：<a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_values/1/main.rs">listings/g_object_values/1/main.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">
@@ -1535,7 +1535,7 @@ impl ButtonImpl for CustomButton {
 <span class="boring">}</span></code></pre>
 <p>我们将在后面处理属性和信号时使用 <code>Value</code>。</p>
 <h2 id="variant"><a class="header" href="#variant">Variant</a></h2>
-<p>当数据需要序列化时，例如将数据发送到另一个进程或通过网络，或将数据存储到磁盘时，就会用到<code>Variant</code>. 虽然 <code>GVariant</code> 支持任意复杂的类型，但 Rust 绑定目前仅限于<code>bool</code>, <code>u8</code>, <code>i16</code>, <code>u16</code>, <code>i32</code>, <code>u32</code>, <code>i64</code>, <code>u64</code>, <code>f64</code>, <code>&amp;str</code>/<code>String</code> 和 <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/struct.VariantDict.html"><code>VariantDict</code></a>. 上述类型的容器也可以使用，如 <code>HashMap</code>、<code>Vec</code>、<code>Option</code>、最多 16 个元素的元组(typle)和 <code>Variant</code>。 只要 Rust 结构体的成员可以用<code>Variant</code>表示，<code>Variant</code>甚至可以从 Rust 结构体<a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib_macros/derive.Variant.html#">派生</a>。</p>
+<p>当数据需要序列化时，例如将数据发送到另一个进程、发送到网络上，或将数据存储到磁盘时，就会用到<code>Variant</code>. 虽然 <code>GVariant</code> 支持任意复杂的类型，但 Rust 绑定目前仅限于<code>bool</code>, <code>u8</code>, <code>i16</code>, <code>u16</code>, <code>i32</code>, <code>u32</code>, <code>i64</code>, <code>u64</code>, <code>f64</code>, <code>&amp;str</code>/<code>String</code> 和 <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/struct.VariantDict.html"><code>VariantDict</code></a>. 上述类型的容器也可以使用，如 <code>HashMap</code>、<code>Vec</code>、<code>Option</code>、最多 16 个元素的元组(typle)和 <code>Variant</code>。 只要 Rust 结构体的成员可以用<code>Variant</code>表示，<code>Variant</code>甚至可以从 Rust 结构体<a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib_macros/derive.Variant.html#">派生</a>。</p>
 <p>在最简单的情况下，将 Rust 类型转换为 <code>Variant</code> 或反向转换，与处理 <code>Value</code> 的方式非常相似。</p>
 <p>文件名：<a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_values/2/main.rs">listings/g_object_values/2/main.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use gtk::prelude::*;
