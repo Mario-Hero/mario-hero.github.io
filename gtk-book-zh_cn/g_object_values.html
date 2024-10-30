@@ -237,7 +237,7 @@
 </span><span class="boring">    assert_eq!(string_some, Some("Hello!".to_string()));
 </span><span class="boring">    assert_eq!(string_none, None);
 </span><span class="boring">}</span></code></pre>
-<p>还要注意的是，在上述枚举中，<code>String</code> 或 <code>glib::Object</code> 等 <a href="https://gnome.pages.gitlab.gnome.org/libsoup/gobject/gobject-Boxed-Types.html">boxed</a> 类型被封装在一个 <code>Option</code> 中。 这源于 C 语言，在 C 语言中，每个 boxed 类型都有可能是 <code>None</code>（或 C 语言中的 <code>NULL</code>）。 您仍然可以按照与上述 <code>i32</code> 相同的方式访问它。如果指定了错误的类型，<a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/value/struct.Value.html#method.get"><code>get</code></a>  会返回 <code>Err</code>，而且如果 <code>Value</code> 代表 <code>None</code>，也会返回 <code>Err</code>。</p>
+<p>还要注意的是，在上述枚举中，<code>String</code> 或 <code>glib::Object</code> 等 <a href="https://gnome.pages.gitlab.gnome.org/libsoup/gobject/gobject-Boxed-Types.html">boxed</a> 类型被封装在一个 <code>Option</code> 中。 这源于 C 语言，在 C 语言中，每个 boxed 类型都有可能是 <code>None</code>（或 <code>NULL</code>）。 您仍然可以按照与上述 <code>i32</code> 相同的方式访问它。如果指定了错误的类型，<a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/value/struct.Value.html#method.get"><code>get</code></a>  会返回 <code>Err</code>，而且如果 <code>Value</code> 代表 <code>None</code>，也会返回 <code>Err</code>。</p>
 <p>文件名：<a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_values/1/main.rs">listings/g_object_values/1/main.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">
@@ -325,7 +325,7 @@
 <span class="boring">}</span></code></pre>
 <p>我们将在后面处理属性和信号时使用 <code>Value</code>。</p>
 <h2 id="variant"><a class="header" href="#variant">Variant</a></h2>
-<p>当数据需要序列化时，例如将数据发送到另一个进程、发送到网络上，或将数据存储到磁盘时，就会用到<code>Variant</code>. 虽然 <code>GVariant</code> 支持任意复杂的类型，但 Rust 绑定目前仅限于<code>bool</code>, <code>u8</code>, <code>i16</code>, <code>u16</code>, <code>i32</code>, <code>u32</code>, <code>i64</code>, <code>u64</code>, <code>f64</code>, <code>&amp;str</code>/<code>String</code> 和 <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/struct.VariantDict.html"><code>VariantDict</code></a>. 上述类型的容器也可以使用，如 <code>HashMap</code>、<code>Vec</code>、<code>Option</code>、最多 16 个元素的元组(typle)和 <code>Variant</code>。 只要 Rust 结构体的成员可以用<code>Variant</code>表示，<code>Variant</code>甚至可以从 Rust 结构体<a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib_macros/derive.Variant.html#">派生</a>。</p>
+<p>当数据需要序列化时，例如将数据发送到另一个进程、发送到网络上，或将数据存储到磁盘时，就会用到<code>Variant</code>. 虽然 <code>GVariant</code> 支持任意复杂的类型，但 Rust 绑定目前仅限于<code>bool</code>, <code>u8</code>, <code>i16</code>, <code>u16</code>, <code>i32</code>, <code>u32</code>, <code>i64</code>, <code>u64</code>, <code>f64</code>, <code>&amp;str</code>/<code>String</code> 和 <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/struct.VariantDict.html"><code>VariantDict</code></a>. 上述类型的容器也可以使用，如 <code>HashMap</code>、<code>Vec</code>、<code>Option</code>、最多 16 个元素的元组(tuple)和 <code>Variant</code>。 只要 Rust 结构体的成员可以用<code>Variant</code>表示，<code>Variant</code>甚至可以从 Rust 结构体<a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib_macros/derive.Variant.html#">派生</a>。</p>
 <p>在最简单的情况下，将 Rust 类型转换为 <code>Variant</code> 或反向转换，与处理 <code>Value</code> 的方式非常相似。</p>
 <p>文件名：<a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_values/2/main.rs">listings/g_object_values/2/main.rs</a></p>
 <pre><code class="language-rust"><span class="boring">use gtk::prelude::*;
