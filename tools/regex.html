@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>正则表达式测试工具</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+        input, textarea {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 5px;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+        .buttons-container {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>正则表达式测试工具</h1>
+
+    <div class="buttons-container">
+        <button onclick="setRegex('^1[3456789]\\d{9}$')">手机号码</button>
+        <button onclick="setRegex('^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])$')">日期 (YYYY-MM-DD)</button>
+        <button onclick="setRegex('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')">邮箱地址</button>
+        <button onclick="setRegex('^((25[0-5]|2[0-4]\\d|[01]?\\d\\d?)\\.){3}(25[0-5]|2[0-4]\\d|[01]?\\d\\d?)$')">IP 地址 (IPv4)</button>
+        <button onclick="setRegex('^(https?|ftp):\\/\\/[^\s/$.?#].[^\s]*$')">链接</button>
+    </div>
+
+    <label for="regex">正则表达式：</label>
+    <input type="text" id="regex" placeholder="Enter your regex pattern here">
+
+    <label for="testString">待测试字符串：</label>
+    <textarea id="testString" rows="4" placeholder="输入待测试字符串"></textarea>
+
+    <button onclick="testRegex()">测试</button>
+
+    <div id="result" class="result"></div>
+
+    <script>
+        function setRegex(pattern) {
+            document.getElementById('regex').value = pattern;
+        }
+
+        function testRegex() {
+            const regexInput = document.getElementById('regex').value;
+            const testString = document.getElementById('testString').value;
+            let resultDiv = document.getElementById('result');
+
+            try {
+                const regex = new RegExp(regexInput);
+                const isMatch = regex.test(testString);
+                if (isMatch) {
+                    resultDiv.textContent = '匹配成功！';
+                    resultDiv.style.color = 'green';
+                } else {
+                    resultDiv.textContent = '匹配失败！';
+                    resultDiv.style.color = 'red';
+                }
+            } catch (e) {
+                resultDiv.textContent = '正则表达式不正确！';
+                resultDiv.style.color = 'red';
+            }
+        }
+    </script>
+</body>
+</html>
